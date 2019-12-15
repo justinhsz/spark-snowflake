@@ -79,6 +79,7 @@ object Parameters {
   val PARAM_STREAMING_STAGE    = knownParam("streaming_stage")
   val PARAM_PEM_PRIVATE_KEY    = knownParam("pem_private_key")
   val PARAM_KEEP_COLUMN_CASE   = knownParam("keep_column_case")
+  val PARAM_AUTO_CREATE_TABLE  = knownParam("auto_create_table")
 
   val PARAM_COLUMN_MAPPING     = knownParam("column_mapping")
   val PARAM_COLUMN_MISMATCH_BEHAVIOR = knownParam("column_mismatch_behavior")
@@ -146,7 +147,8 @@ object Parameters {
     PARAM_USE_COPY_UNLOAD -> "true",
     PARAM_USE_PROXY -> "false",
     PARAM_EXPECTED_PARTITION_COUNT -> "1000",
-    PARAM_MAX_RETRY_COUNT -> "10"
+    PARAM_MAX_RETRY_COUNT -> "10",
+    PARAM_AUTO_CREATE_TABLE -> "on"
   )
 
   /**
@@ -605,6 +607,8 @@ object Parameters {
 
     def keepOriginalColumnNameCase: Boolean =
       isTrue(parameters(PARAM_KEEP_COLUMN_CASE))
+
+    def autoCreateTable: Boolean = isTrue(parameters(PARAM_AUTO_CREATE_TABLE))
 
     def bindVariableEnabled: Boolean = isTrue(parameters(PARAM_BIND_VARIABLE))
 

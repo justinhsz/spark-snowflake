@@ -48,7 +48,9 @@ package object streaming {
     Await.result(checkPrevious, TIME_OUT minutes)
 
     if(pipeDropped) {
-      conn.createTable(param.table.get.name, schema, param, overwrite = false)
+      if(param.autoCreateTable){
+        conn.createTable(param.table.get.name, schema, param, overwrite = false)
+      }
 
       val copy = ConstantString(copySql(param, conn, format)) !
 

@@ -98,7 +98,9 @@ private[io] object StageWriter {
       }
 
       //create table
-      conn.createTable(targetTable.name, schema, params)
+      if(params.autoCreateTable) {
+        conn.createTable(targetTable.name, schema, params)
+      }
 
       //pre actions
       Utils.executePreActions(DefaultJDBCWrapper, conn, params, Option(targetTable))
